@@ -85,6 +85,7 @@ class ViewController(BaseController):
                 _('A harvest job has already been scheduled for ' 'this source')
             )
         except Exception as e:
+            raise e
             msg = 'An error occurred: [%s]' % str(e)
             h.flash_error(msg)
 
