@@ -85,7 +85,13 @@ class ViewController(BaseController):
                 _('A harvest job has already been scheduled for ' 'this source')
             )
         except Exception as e:
-            raise e
+	    exc_type, exc_value, exc_traceback = sys.exc_info()
+	    # Do your verification using exc_value and exc_traceback
+
+	    print "*** print_exception:"
+	    traceback.print_exception(exc_type, exc_value, exc_traceback,
+				      limit=3, file=sys.stdout)
+            raise
             msg = 'An error occurred: [%s]' % str(e)
             h.flash_error(msg)
 
