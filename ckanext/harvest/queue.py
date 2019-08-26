@@ -175,6 +175,8 @@ class RedisPublisher(object):
         value = json.dumps(body)
         # remove if already there
         if self.routing_key == get_gather_routing_key():
+            log.critical(self.routing_key)
+            log.critical(value)
             self.redis.lrem(self.routing_key, 0, value)
         self.redis.rpush(self.routing_key, value)
 
